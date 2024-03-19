@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "baseUrl": "test",
+  },
+  "include": ["test/**/*.ts"]
+}
