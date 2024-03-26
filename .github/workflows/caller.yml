@@ -19,6 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check results
-        env:
-          RESULT: ${{ needs.trigger-e2e-tests.outputs.outcome }}
-        run: echo "The tests finished with the $RESULT status"
+        run: echo "The tests finished with the ${{ needs.trigger-e2e-tests.outputs.outcome }} status"
