@@ -11,6 +11,7 @@ export default defineConfig({
     setupNodeEvents(_on, config) {
       console.log(`CI: ${process.env.CI}`);
       console.log(`SPEC HASH: ${process.env.SPEC_HASH}`);
+      console.log(`VERY SECRET KEY: ${process.env.VERY_SECRET_KEY}`);
       return config;
     }
   }
