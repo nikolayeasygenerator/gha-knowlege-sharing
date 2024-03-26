@@ -1,15 +1,16 @@
 {
   "name": "gha-knowledge-sharing",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:ui": "cypress open --e2e"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Mykola Iskorostenskyi",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "cypress": "^13.7.0"
   }
 }

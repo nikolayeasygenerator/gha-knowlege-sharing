@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": "test",
+    "target": "ESNext",
+    "strict": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["cypress", "node"]
   },
   "include": ["test/**/*.ts"]
 }

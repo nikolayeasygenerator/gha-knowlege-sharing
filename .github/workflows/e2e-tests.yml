@@ -1,0 +1,33 @@
+name: Matrix
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  e2e-tests:
+    name: E2e tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        spec: [test.spec.ts, test2.spec.ts]
+        spec-hash: [hashFiles(test/specs/test.spec.ts), hashFiles(test/specs/test2.spec.ts)]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Run tests
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run test
+      - name: Upload failure artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: test/videos
+          retention-days: 1
