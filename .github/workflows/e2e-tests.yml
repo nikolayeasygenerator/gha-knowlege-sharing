@@ -1,4 +1,5 @@
 name: Matrix
+run-name: ${{ inputs.initiator || 'Somebody' }}'s test run
 
 on:
   push:
@@ -7,6 +8,16 @@ on:
   repository_dispatch:
     types:
       - test-event
+  workflow_dispatch:
+    inputs:
+      initiatior:
+        type: string
+        required: true
+        description: Run initiator
+      message:
+        type: string
+        required: false
+        description: Some cool message for tests
 
 jobs:
   e2e-tests:
@@ -34,6 +45,7 @@ jobs:
         env:
           SPEC_HASH: ${{ hashFiles(format('test/specs/{0}', matrix.spec)) }}
           VERY_SECRET_KEY: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.very_secret_key || '*****' }}
+          MESSAGE: ${{ inputs.message || 'Missing message' }}
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4

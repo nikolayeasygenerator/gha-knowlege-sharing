@@ -12,6 +12,7 @@ export default defineConfig({
       console.log(`CI: ${process.env.CI}`);
       console.log(`SPEC HASH: ${process.env.SPEC_HASH}`);
       console.log(`VERY SECRET KEY: ${process.env.VERY_SECRET_KEY}`);
+      console.log(`MESSAGE: ${process.env.MESSAGE}`);
       return config;
     }
   }
