@@ -22,8 +22,7 @@ jobs:
       - name: Run tests
         uses: cypress-io/github-action@v6
         with:
-          command: npm run test
-          spec: test/specs/${{ matrix.spec }}
+          command: npm run test -- --spec test/specs/${{ matrix.spec }}
         env:
           SPEC_HASH: ${{ hashFiles('test/specs/{0}', matrix.spec) }}
       - name: Upload failure artifacts
