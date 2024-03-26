@@ -29,7 +29,9 @@ on:
         required: false
         description: Some cool message for tests
     outputs:
-      outcome: ${{ jobs.e2e-tests.outputs.outcome }}
+      outcome:
+        value: ${{ jobs.e2e-tests.outputs.outcome }}
+        description: The best outcome
 
 jobs:
   e2e-tests:
