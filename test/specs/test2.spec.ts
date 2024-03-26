@@ -9,14 +9,6 @@ describe('Test 2', () => {
     });
   });
 
-  beforeEach(() => {
-    cy.visit('/');
-
-    cy.get('#homepage-images').click();
-    cy.get('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll').click();
-    cy.get('#CybotCookiebotDialog').should('not.be.visible');
-  });
-
   it('should allow the user to view the "Careers" page', () => {
     cy.window().scrollTo('top');
     cy.contains('Careers').click();

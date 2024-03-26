@@ -9,14 +9,6 @@ describe('Test', () => {
     });
   });
 
-  beforeEach(() => {
-    cy.visit('/');
-
-    cy.get('#homepage-images').click();
-    cy.get('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll').click();
-    cy.get('#CybotCookiebotDialog').should('not.be.visible');
-  });
-
   it('should redirect the user to the "Why Easygenerator" page', () => {
     cy.contains('Why Easygenerator?').should('not.exist');
     cy.contains('a', 'Why Easygenerator').click();
