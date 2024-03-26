@@ -69,6 +69,7 @@ jobs:
           path: test/videos
           retention-days: 1
       - name: Set outputs
+        if: always()
         env:
           OUTCOME: ${{ steps.e2e-tests.outcome }}
         run: echo "outcome=$OUTCOME" >> $GITHUB_OUTPUT
