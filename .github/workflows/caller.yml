@@ -15,6 +15,7 @@ jobs:
   check-results:
     name: Check e2e test results
     needs: trigger-e2e-tests
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Check results
