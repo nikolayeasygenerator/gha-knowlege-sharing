@@ -7,9 +7,11 @@ export default defineConfig({
     supportFile: 'test/support/index.ts',
     video: true,
     videosFolder: 'test/videos',
-    setupNodeEvents() {
+    defaultCommandTimeout: 8000,
+    setupNodeEvents(_on, config) {
       console.log(`CI: ${process.env.CI}`);
       console.log(`SPEC HASH: ${process.env.SPEC_HASH}`);
+      return config;
     }
   }
 });
