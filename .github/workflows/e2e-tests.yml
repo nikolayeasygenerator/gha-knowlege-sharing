@@ -37,6 +37,8 @@ jobs:
   e2e-tests:
     name: E2e tests
     runs-on: ubuntu-latest
+    outputs:
+      outcome: ${{ steps.e2e-tests.outcome }}
     strategy:
       fail-fast: false
       matrix:
@@ -68,8 +70,3 @@ jobs:
           name: ${{ matrix.spec }}-video
           path: test/videos
           retention-days: 1
-      - name: Set outputs
-        if: always()
-        env:
-          OUTCOME: ${{ steps.e2e-tests.outcome }}
-        run: echo "outcome=$OUTCOME" >> $GITHUB_OUTPUT
