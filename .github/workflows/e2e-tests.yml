@@ -25,7 +25,7 @@ jobs:
           command: npm run test
           spec: test/specs/${{ matrix.spec }}
         env:
-          SPEC_HASH: ${{ hashFiles(test/specs/matrix.spec) }}
+          SPEC_HASH: ${{ hashFiles('test/specs/{0}', ${{ matrix.spec }}) }}
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
