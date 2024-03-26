@@ -1,0 +1,22 @@
+name: Caller workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  trigger_e2e-tests:
+    name: Trigger e2e tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger e2e tests
+        id: e2e-tests
+        uses: '.github/workflows/e2e-tests.yml'
+        with:
+          initiator: Caller workflow
+          message: Hello from a caller workflow
+      - name: Check results
+        env:
+          RESULT: ${{ steps.e2e-tests.outputs }}
+        run: echo "The tests finished with the $RESULT status"

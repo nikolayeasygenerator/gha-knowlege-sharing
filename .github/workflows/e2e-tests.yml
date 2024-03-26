@@ -18,6 +18,18 @@ on:
         type: string
         required: false
         description: Some cool message for tests
+  workflow_call:
+    inputs:
+      initiator:
+        type: string
+        required: true
+        description: Run initiator
+      message:
+        type: string
+        required: false
+        description: Some cool message for tests
+    outputs:
+      outcome: ${{ jobs.e2e-tests.outputs.outcome }}
 
 jobs:
   e2e-tests:
@@ -39,6 +51,7 @@ jobs:
           ENV: ${{ toJSON(github) }}
         run: echo $ENV
       - name: Run tests
+        id: e2e-tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run test -- --spec test/specs/${{ matrix.spec }}
@@ -53,3 +66,7 @@ jobs:
           name: ${{ matrix.spec }}-video
           path: test/videos
           retention-days: 1
+      - name: Set outputs
+        env:
+          OUTCOME: ${{ steps.e2e-tests.outcome }}
+        run: echo "outcome=$OUTCOME" >> $GITHUB_OUTPUT
