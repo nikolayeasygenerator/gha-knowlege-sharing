@@ -14,9 +14,10 @@ jobs:
       message: Hello from a caller workflow
   check-results:
     name: Check e2e test results
+    needs: trigger-e2e-tests
     runs-on: ubuntu-latest
     steps:
       - name: Check results
         env:
-          RESULT: ${{ jobs.trigger-e2e-tests.outputs.outcome }}
+          RESULT: ${{ needs.trigger-e2e-tests.outputs.outcome }}
         run: echo "The tests finished with the $RESULT status"
