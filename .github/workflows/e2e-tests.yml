@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  repository_dispatch:
+
+
 jobs:
   e2e-tests:
     name: E2e tests
@@ -20,7 +23,9 @@ jobs:
         with:
           node-version: 18
       - name: Check env
-        run: echo $GITHUB_ENV
+        env:
+          ENV: ${{ toJSON(github) }}
+        run: echo $ENV
       - name: Run tests
         uses: cypress-io/github-action@v6
         with:
