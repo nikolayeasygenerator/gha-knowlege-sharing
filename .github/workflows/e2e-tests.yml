@@ -10,7 +10,7 @@ on:
       - test-event
   workflow_dispatch:
     inputs:
-      initiatior:
+      initiator:
         type: string
         required: true
         description: Run initiator
