@@ -9,7 +9,7 @@ export default defineConfig({
     videosFolder: 'test/videos',
     setupNodeEvents() {
       console.log(`CI: ${process.env.CI}`);
-      console.log('')
+      console.log(`SPEC HASH: ${process.env.SPEC_HASH}`);
     }
   }
 });
