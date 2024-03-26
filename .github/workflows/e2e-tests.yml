@@ -19,14 +19,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Check workspace
-        run: echo $GITHUB_WORKSPACE
       - name: Run tests
         uses: cypress-io/github-action@v6
         with:
           command: npm run test -- --spec test/specs/${{ matrix.spec }}
         env:
-          SPEC_HASH: ${{ hashFiles('test/specs/test.spec.ts') }}
+          SPEC_HASH: ${{ hashFiles(format('test/specs/{0}', matrix.spec)) }}
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
